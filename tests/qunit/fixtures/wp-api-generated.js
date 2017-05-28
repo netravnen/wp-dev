@@ -2539,6 +2539,11 @@ mockedApiResponse.Schema = {
                             "description": "First name for the user.",
                             "type": "string"
                         },
+                        "other_name": {
+                            "required": false,
+                            "description": "Additional names for the user.",
+                            "type": "string"
+                        },
                         "last_name": {
                             "required": false,
                             "description": "Last name for the user.",
@@ -2664,6 +2669,11 @@ mockedApiResponse.Schema = {
                         "first_name": {
                             "required": false,
                             "description": "First name for the user.",
+                            "type": "string"
+                        },
+                        "other_name": {
+                            "required": false,
+                            "description": "Additional names for the user.",
                             "type": "string"
                         },
                         "last_name": {
@@ -2801,6 +2811,11 @@ mockedApiResponse.Schema = {
                         "first_name": {
                             "required": false,
                             "description": "First name for the user.",
+                            "type": "string"
+                        },
+                        "other_name": {
+                            "required": false,
+                            "description": "Additional names for the user.",
                             "type": "string"
                         },
                         "last_name": {
