@@ -258,7 +258,7 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 	 * @param WP_User $user The current WP_User object.
 	 */
 	public function column_name( $user ) {
-		echo "$user->first_name $user->last_name";
+		echo "$user->first_name $user->other_name $user->last_name";
 	}
 
 	/**

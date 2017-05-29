@@ -387,7 +387,7 @@ if ( is_multisite() && is_network_admin() && ! IS_PROFILE_PAGE && current_user_c
 	<td><input type="text" name="first_name" id="first_name" value="<?php echo esc_attr($profileuser->first_name) ?>" class="regular-text" /></td>
 </tr>
 
-<tr class="user-last-name-wrap">
+<tr class="user-other-name-wrap">
 	<th><label for="other_name"><?php _e('Additional Names') ?></label></th>
 	<td><input type="text" name="other_name" id="other_name" value="<?php echo esc_attr($profileuser->other_name) ?>" class="regular-text" /></td>
 </tr>

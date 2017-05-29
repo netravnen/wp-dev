@@ -75,6 +75,8 @@ function edit_user( $user_id = 0 ) {
 	}
 	if ( isset( $_POST['first_name'] ) )
 		$user->first_name = sanitize_text_field( $_POST['first_name'] );
+	if ( isset( $_POST['other_name'] ) )
+		$user->other_name = sanitize_text_field( $_POST['other_name'] );
 	if ( isset( $_POST['last_name'] ) )
 		$user->last_name = sanitize_text_field( $_POST['last_name'] );
 	if ( isset( $_POST['nickname'] ) )

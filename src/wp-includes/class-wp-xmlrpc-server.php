@@ -1121,6 +1121,7 @@ class wp_xmlrpc_server extends IXR_Server {
 		$user_fields = array(
 			'username'          => $user->user_login,
 			'first_name'        => $user->user_firstname,
+			'other_name'        => $user->user_othername,
 			'last_name'         => $user->user_lastname,
 			'registered'        => $this->_convert_date( $user->user_registered ),
 			'bio'               => $user->user_description,
@@ -2400,6 +2401,7 @@ class wp_xmlrpc_server extends IXR_Server {
 	 *  - 'user_id'
 	 *  - 'username'
 	 *  - 'first_name'
+	 *  - 'other_name'
 	 *  - 'last_name'
 	 *  - 'registered'
 	 *  - 'bio'
@@ -2592,6 +2594,7 @@ class wp_xmlrpc_server extends IXR_Server {
 	 *     @type string $password
 	 *     @type array  $content_struct It can optionally contain:
 	 *      - 'first_name'
+	 *      - 'other_name'
 	 *      - 'last_name'
 	 *      - 'website'
 	 *      - 'display_name'
@@ -2627,6 +2630,9 @@ class wp_xmlrpc_server extends IXR_Server {
 		// only set the user details if it was given
 		if ( isset( $content_struct['first_name'] ) )
 			$user_data['first_name'] = $content_struct['first_name'];
+
+		if ( isset( $content_struct['other_name'] ) )
+			$user_data['other_name'] = $content_struct['other_name'];
 
 		if ( isset( $content_struct['last_name'] ) )
 			$user_data['last_name'] = $content_struct['last_name'];
@@ -4464,7 +4470,8 @@ class wp_xmlrpc_server extends IXR_Server {
 			'userid'    => $user->ID,
 			'url'       => $user->user_url,
 			'lastname'  => $user->last_name,
-			'firstname' => $user->first_name
+			'firstname' => $user->first_name,
+			'othername' => $user->other_name
 		);
 
 		return $struct;

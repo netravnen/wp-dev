@@ -1388,6 +1388,9 @@ function validate_username( $username ) {
  *     @type string      $first_name           The user's first name. For new users, will be used
  *                                             to build the first part of the user's display name
  *                                             if `$display_name` is not specified.
+ *     @type string      $other_name           The user's additional names. For new users, will be used
+ *                                             to build the middle part of the user's display name
+ *                                             if `$display_name` is not specified.
  *     @type string      $last_name            The user's last name. For new users, will be used
  *                                             to build the second part of the user's display name
  *                                             if `$display_name` is not specified.
@@ -1557,6 +1560,17 @@ function wp_insert_user( $userdata ) {
 	 */
 	$meta['first_name'] = apply_filters( 'pre_user_first_name', $first_name );
 
+	$other_name = empty( $userdata['other_name'] ) ? '' : $userdata['other_name'];
+
+	/**
+	 * Filters a user's additional names before the user is created or updated.
+	 *
+	 * @since 4.x.x
+	 *
+	 * @param string $other_name The user's additional name.
+	 */
+	$meta['other_name'] = apply_filters( 'pre_user_other_name', $other_name );
+
 	$last_name = empty( $userdata['last_name'] ) ? '' : $userdata['last_name'];
 
 	/**
@@ -1574,8 +1588,13 @@ function wp_insert_user( $userdata ) {
 		} elseif ( $meta['first_name'] && $meta['last_name'] ) {
 			/* translators: 1: first name, 2: last name */
 			$display_name = sprintf( _x( '%1$s %2$s', 'Display name based on first name and last name' ), $meta['first_name'], $meta['last_name'] );
+		} elseif ( $meta['first_name'] && $meta['other_name'] && $meta['last_name'] ) {
+			/* translators: 1: first name, 2: last name, 3: additional names */
+			$display_name = sprintf( _x( '%1$s %3$s %2$s', 'Display name based on first name and last name' ), $meta['first_name'], $meta['last_name'], $meta['other_name'] );
 		} elseif ( $meta['first_name'] ) {
 			$display_name = $meta['first_name'];
+		} elseif ( $meta['other_name'] ) {
+			$display_name = $meta['other_name'];
 		} elseif ( $meta['last_name'] ) {
 			$display_name = $meta['last_name'];
 		} else {
@@ -1662,6 +1681,7 @@ function wp_insert_user( $userdata ) {
  	 *
  	 *     @type string   $nickname             The user's nickname. Default is the user's username.
 	 *     @type string   $first_name           The user's first name.
+	 *     @type string   $other_name           The user's additional names.
 	 *     @type string   $last_name            The user's last name.
 	 *     @type string   $description          The user's description.
 	 *     @type bool     $rich_editing         Whether to enable the rich-editor for the user. False if not empty.
@@ -1989,7 +2009,7 @@ function wp_create_user($username, $password, $email = '') {
  * @return array List of user keys to be populated in wp_update_user().
  */
 function _get_additional_user_keys( $user ) {
-	$keys = array( 'first_name', 'last_name', 'nickname', 'description', 'rich_editing', 'comment_shortcuts', 'admin_color', 'use_ssl', 'show_admin_bar_front', 'locale' );
+	$keys = array( 'first_name', 'other_name', 'last_name', 'nickname', 'description', 'rich_editing', 'comment_shortcuts', 'admin_color', 'use_ssl', 'show_admin_bar_front', 'locale' );
 	return array_merge( $keys, array_keys( wp_get_user_contact_methods( $user ) ) );
 }
 

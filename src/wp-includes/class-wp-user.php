@@ -17,6 +17,8 @@
  * @property string $user_description
  * @property string $first_name
  * @property string $user_firstname
+ * @property string $other_name
+ * @property string $user_othername
  * @property string $last_name
  * @property string $user_lastname
  * @property string $user_login
@@ -123,6 +125,7 @@ class WP_User {
 			$prefix = $GLOBALS['wpdb']->prefix;
 			self::$back_compat_keys = array(
 				'user_firstname' => 'first_name',
+				'user_othername' => 'other_name',
 				'user_lastname' => 'last_name',
 				'user_description' => 'description',
 				'user_level' => $prefix . 'user_level',

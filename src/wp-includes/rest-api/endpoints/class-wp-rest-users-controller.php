@@ -844,6 +844,10 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			$data['first_name'] = $user->first_name;
 		}
 
+		if ( ! empty( $schema['properties']['other_name'] ) ) {
+			$data['other_name'] = $user->other_name;
+		}
+
 		if ( ! empty( $schema['properties']['last_name'] ) ) {
 			$data['last_name'] = $user->last_name;
 		}
@@ -983,6 +987,10 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 
 		if ( isset( $request['first_name'] ) && ! empty( $schema['properties']['first_name'] ) ) {
 			$prepared_user->first_name = $request['first_name'];
+		}
+
+		if ( isset( $request['other_name'] ) && ! empty( $schema['properties']['other_name'] ) ) {
+			$prepared_user->other_name = $request['other_name'];
 		}
 
 		if ( isset( $request['last_name'] ) && ! empty( $schema['properties']['last_name'] ) ) {
@@ -1170,6 +1178,14 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 				),
 				'first_name'  => array(
 					'description' => __( 'First name for the user.' ),
+					'type'        => 'string',
+					'context'     => array( 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+				),
+				'other_name' => array(
+					'description' => __( 'Additional names fot the user.' ),
 					'type'        => 'string',
 					'context'     => array( 'edit' ),
 					'arg_options' => array(

@@ -403,8 +403,8 @@ function wp_list_authors( $args = '' ) {
 			continue;
 		}
 
-		if ( $args['show_fullname'] && $author->first_name && $author->last_name ) {
-			$name = "$author->first_name $author->last_name";
+		if ( $args['show_fullname'] && $author->first_name && $author->other_name && $author->last_name ) {
+			$name = "$author->first_name $author->other_name $author->last_name";
 		} else {
 			$name = $author->display_name;
 		}

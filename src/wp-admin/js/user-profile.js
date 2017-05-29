@@ -339,12 +339,13 @@
 		});
 
 		if ( select.length ) {
-			$('#first_name, #last_name, #nickname').bind( 'blur.user_profile', function() {
+			$('#first_name, #other_name, #last_name, #nickname').bind( 'blur.user_profile', function() {
 				var dub = [],
 					inputs = {
 						display_nickname  : $('#nickname').val() || '',
 						display_username  : $('#user_login').val() || '',
 						display_firstname : $('#first_name').val() || '',
+						display_othername : $('#other_name').val() || '',
 						display_lastname  : $('#last_name').val() || ''
 					};
 
