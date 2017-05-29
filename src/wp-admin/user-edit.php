@@ -414,10 +414,10 @@ if ( is_multisite() && is_network_admin() && ! IS_PROFILE_PAGE && current_user_c
 
 			if ( !empty($profileuser->first_name) )
 				$public_display['display_firstname'] = $profileuser->first_name;
-			
+
 			if ( !empty($profileuser->other_name) )
 				$public_display['display_othername'] = $profileuser->other_name;
-			
+
 			if ( !empty($profileuser->last_name) )
 				$public_display['display_lastname'] = $profileuser->last_name;
 
